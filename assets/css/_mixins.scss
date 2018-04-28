@@ -1,0 +1,59 @@
+
+@mixin box-sizing($style: border-box) {
+    box-sizing: $style;
+    -moz-box-sizing: $style;
+    -webkit-box-sizing: $style;
+}
+
+@mixin box-radius($radius: 4px) {
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+@mixin radius($vert, $horz, $radius: 4px) {
+    border-#{$vert}-#{$horz}-radius: $radius;
+    -moz-border-radius-#{$vert}#{$horz}: $radius;
+    -webkit-border-#{$vert}-#{$horz}-radius: $radius;
+}
+// private function for parse transition list
+@function _parse-transition-list($properties) {
+    $result: unquote('');
+    $length: length($properties);
+    @for $i from 1 through $length {
+        $result: $result + unquote(nth($properties, $i) + if($i < $length, ", ", ""));
+    }
+    @return $result;
+}
+@mixin transition($properties: "background-color 0.2s" "border 0.2s" "color 0.2s", $timing-function: linear, $delay: 0s) {
+    $transition: _parse-transition-list($properties);
+    transition: #{$transition};
+    transition-delay: #{$delay};
+    transition-timing-function: #{$timing-function};
+
+    -moz-transition: #{$transition};
+    -moz-transition-delay: #{$delay};
+    -moz-transition-timing-function: #{$timing-function};
+    
+    -webkit-transition: #{$transition};
+    -webkit-transition-delay: #{$delay};
+    -webkit-transition-timing-function: #{$timing-function};
+}
+
+@mixin gradient-linear($color-top, $color-bottom, $from-percent: 0%, $to-percent: 100%) {
+    background: #{$color-top};
+    background: -moz-linear-gradient(top, #{$color-top} #{$from-percent}, #{$color-bottom} #{$to-percent});
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(#{$from-percent}, #{$color-top}), color-stop(#{$to-percent}, #{$color-bottom}));
+    background: -webkit-linear-gradient(top, #{$color-top} #{$from-percent}, #{$color-bottom} #{$to-percent});
+    background: linear-gradient(to bottom, #{$color-top} #{$from-percent}, #{$color-bottom} #{$to-percent});
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color-top}', endColorstr='#{$color-bottom}',GradientType=0);
+}
+
+@mixin gradient-radial($color-top, $color-bottom, $from-percent: 0%, $to-percent: 100%) {
+    background: #{$color-top};
+    background: -moz-radial-gradient(center, ellipse cover, #{$color-top} #{$from-percent}, #{$color-bottom} #{$to-percent});
+    background: -webkit-gradient(radial, center center, 0px, center center, #{$to-percent}, color-stop(#{$from-percent}, #{$color-top}), color-stop(#{$to-percent}, #{$color-bottom}));
+    background: -webkit-radial-gradient(center, ellipse cover, #{$color-top} #{$from-percent}, #{$color-bottom} #{$to-percent});
+    background: radial-gradient(ellipse at center, #{$color-top} #{$from-percent}, #{$color-bottom} #{$to-percent});
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$color-top}', endColorstr='#{$color-bottom}',GradientType=1);
+}

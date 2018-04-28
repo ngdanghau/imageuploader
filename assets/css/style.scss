@@ -1,0 +1,347 @@
+@import "_mixins";
+
+$body-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$main-width: 600px;
+$main-height: 320px;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+select {
+    -moz-outline: none;
+}
+
+html, body {
+    min-height: 100%;
+    height: 100%;
+}
+body {
+    font-size: 12px;
+    font-family: $body-font-family;
+    background: #CDCDCD;
+    width: 100%;
+    color: #333;
+    line-height: 1.5em;
+}
+a {
+    text-decoration: underline;
+    color: #17a0ff;
+    &:hover {
+        color: #EB4D8A;
+    }
+}
+.wrapper {
+    // margin-top: 50%;
+    // margin-left: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    display: block;
+    .container {
+        width: $main-width;
+        // height: $main-height;
+        margin-left: -$main-width/2;
+        margin-top: -$main-height/2;
+        display: block;
+        background: #fff;
+        // position: absolute;
+        @include box-radius(5px);
+        box-shadow: 0px 0px 11px 3px #bbb;
+        overflow: hidden;
+        .header {
+            color: #fff;
+            font-size: 23px;
+            background: #00B5FA;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            font-weight: 500;
+            .title {
+                float: left;
+            }
+            .icon {
+                float: right;
+                font-size: 30px;
+                line-height: 50px;
+            }
+        }
+        .content {
+            padding: 15px 30px;
+            font-size: 1.15em;
+            #loading {
+                float: right;
+                display: none;
+                img {
+                    width: 128px;
+                    // height: 128px;
+                }
+            }
+            .check {
+                color: #555;
+                cursor: pointer;
+                font-size: 15px;
+                @include transition;
+                margin-right: 5px;
+                line-height: 1.6em;
+                &:hover {
+                    color: #000;
+                    text-shadow: 0 1px 0 #ddd;
+                }
+            }
+            .select {
+                width: 100px;
+                overflow: hidden;
+                border: 1px solid #bbb;
+                @include box-radius(4px);
+                @include transition;
+                // box-shadow: 0 0px 1px #999;
+                display: inline-block;
+                position: relative;
+                margin-top: 2px;
+                height: 21px;
+                line-height: 21px;
+                &:hover {
+                    border: 1px solid #999;
+                    box-shadow: 0 0px 1px #ccc;
+                }
+                select {
+                    background: #fff;
+                    border: none;
+                    padding: 2px 5px;
+                    width: 120px;
+                    font-size: 13px;
+                    font-weight: 300;
+                    font-family: $body-font-family;
+                    // color: #666; // fucking Firefox outline
+                }
+                .icon {
+                    position: absolute;
+                    right: 6px;
+                    top: 5px;
+                    color: #333;
+                }
+            }
+            .options {
+                display: block;
+                margin-bottom: 10px;
+                .group {
+                    padding: 2px 0;
+                    height: 23px;
+                    line-height: 23px;
+                    display: block;
+                    clear: both;
+                    label {
+                        font-weight: 500;
+                        color: #555;
+                        float: left;
+                    }
+                    .control {
+                        margin-left: 10px;
+                        float: left;
+                        color: #ccc;
+                        font-weight: 300;
+                        line-height: 1;
+                        &#upload-mode {
+                            a {
+                                color: #666;
+                                @include transition;
+                                &:hover, &.active {
+                                    color: #17a0ff;
+                                }
+                            }
+                        }
+                    }
+                    &.hide {
+                        display: none;
+                    }
+                }
+            }
+            .button {
+                display: inline-block;
+                vertical-align: middle;
+                background: #00B5FA;
+                border: none;
+                @include box-radius(3px);
+                height: 32px;
+                line-height: 32px;
+                padding: 0 8px;
+                font-weight: 400;
+                color: #fff;
+                cursor: pointer;
+                font-size: 13px;
+                margin: 0 3px;
+                @include transition;
+                font-family: $body-font-family;
+                .icon {
+                    margin-left: 5px;
+                }
+                &:hover {
+                    background: #04a2fa;
+                }
+                &.hide {
+                    display: none;
+                }
+                &.green {
+                    background: #11c220;
+                    &:hover {
+                        background: #12af1e;
+                    }
+                }
+                &.black {
+                    background: #504855;
+                    &:hover {
+                        background: #3d3741;
+                    }
+                }
+            }
+            .upload-process, .transload-process {
+                .item {
+                    border-bottom: 1px solid #DDDDDD;
+                    padding: 5px;
+                    overflow: hidden;
+                    &:hover, &:hover {
+                        background: #F3F3F3;
+                    }
+                    span {
+                        display: inline-block;
+                        float: left;
+                        margin-right: 5px;
+                    }
+                    &.waiting .status .icon {
+                        color: #aaa;
+                    }
+                    &.uploaded .status .icon {
+                        color: #309320;
+                    }
+                    &.uploadfail .status .icon {
+                        color: #aa262d;
+                    }
+                    .name {
+                        input {
+                            width: 200px;
+                            color: #2eace8;
+                        }
+                    }
+                    .result {
+                        input {
+                            width: 235px;
+                        }
+                        input[disabled] {
+                            color: #bbb;
+                        }
+                    }
+                    .loading {
+                        display: none;
+                    }
+                    .transparent {
+                        background: transparent;
+                        border: none;
+                        font-style: 12px;
+                        padding: 3px 5px;
+                        font-family: $body-font-family;
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: #555;
+                        &:focus {
+                            font-weight: 500;
+                        }
+                    }
+                    .remove {
+                        float: right;
+                        cursor: pointer;
+                        color: #ccc;
+                        &:hover {
+                            color: #ff0000;
+                        }
+                    }
+                    .refresh {
+                        display: none;
+                        float: right;
+                        cursor: pointer;
+                        color: #8a10f9;
+                        &:hover {
+                            color: #780dda;
+                        }
+                    }
+                }
+            }
+            .transload-process {
+                display: none;
+                textarea {
+                    width: 100%;
+                    height: 80px;
+                    @include box-sizing;
+                    padding: 3px 5px;
+                    font-family: $body-font-family;
+                    font-size: 12px;
+                    resize: vertical;
+                    border: 1px solid #ddd;
+                }
+            }
+            .upload-process, .transload-process .list {
+                max-height: 100px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+            // RESULTS
+            #results {
+                .links {
+                    display: none;
+                    margin-top: 10px;
+                    .tabs {
+                        overflow: hidden;
+                        .tab {
+                            display: inline-block;
+                            background: #eaeaea;
+                            padding: 3px 6px;
+                            cursor: pointer;
+                            color: #888;
+                            @include transition;
+                            &:hover, &.active {
+                                color: #555;
+                                text-shadow: 0 1px 0 #eee;
+                                background: #ccc;
+                            }
+                        }
+                    }
+                    textarea {
+                        width: 100%;
+                        height: 100px;
+                        @include box-sizing;
+                        padding: 3px 5px;
+                        font-family: $body-font-family;
+                        font-size: 12px;
+                        resize: vertical;
+                        border: 1px solid #ddd;
+                    }
+                }
+            }
+        }
+        .content.footer {
+            background: #EBEBEB;
+            position: relative;
+            height: 32px;
+            .action.upload {
+
+            }
+            .action.transload {
+                display: none;
+            }
+            .copyright {
+                position: absolute;
+                right: 20px;
+                bottom: 20px;
+                font-size: 11px;
+                color: #888;
+                text-shadow: 0 1px 0 #fff;
+            }
+        }
+    }
+}

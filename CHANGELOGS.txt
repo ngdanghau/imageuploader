@@ -1,0 +1,80 @@
+### Change Logs
+
+##### Version 5.1.1; May 23, 2014
+* Update Flickr API (SSL required)
+* Update vendor, ChipVN library
+
+##### Version 5.1.2; May 27, 2014
+* Fixed Picasa plugin to get URL not resized, use account by email
+
+##### Version 5.1.3; Jun 05, 2014
+* Update Picasa plugin to avoid BadAuthentication; WebLoginRequired
+
+##### Version 5.2.0; Jun 19, 2014
+* Fixed Plugins Abstract (wrong split arguments)
+* New: Postimage plugin for uploading images to postimage.org
+
+##### Version 5.2.1; Jun 19, 2014
+* Changed Postimage to get full size instead of thumbnail
+
+##### Version 5.2.2
+* New: Option to avoid watermark to small images
+
+##### Version 5.2.4
+* Update: Imageshack plugin because Imageshack change API results
+
+##### Version 5.2.5
+* Fixed: Imgur transload error handler
+* Update: Improve ChipVN ClassLoader
+
+##### Version 5.2.6
+* Update: Have many updates so you should remove all old source, upload the new then configure again.
+
+##### Version 5.2.7
+* Update: Imgur plugin to upload like normal user (Imgur stop supporting API version 2)
+
+##### Version 5.2.8; Oct 06, 2014
+* Update: Imgur plugin to use API version 3 (require API Client ID, Secret)
+
+##### Version 5.2.9; Oct 07, 2014
+* Fixed ChipVN ClassLoader (issues while register autoload on PHP 5.2.x)
+
+##### Version 5.2.10; Oct 09, 2014
+* Fixed: wrong character while replace spaces in url for transloading
+
+#### Version 5.2.12; Oct 14, 2014
+* Update: Improve display error reporting (you will not see blank page if configuration is incorrect)
+* Fixed: style to hide default options
+* Fixed: getting option is invalid if force user use defaults.
+
+#### Version 5.2.13; Nov 07, 2014
+* Update Postimage plugin to avoid issue Image URL not found.
+
+#### Version 5.2.14; Mar 07, 2015
+* Fixed Postimage not found image url in some cases.
+* Update ChipVN library to improve performance when upload large file
+
+#### Version 5.2.15; May 04, 2015
+* Fixed Flickr signature invalid if file name have some special chars
+* Update Imageshack direct link.
+* Keep EXIF informations if not use watermark, resize option.
+
+#### Version 5.2.16; May 27, 2015
+* No longer support Flickr login with accounts. Must use API
+* Add new PicasaNew uploader that use API version 2 with OAuth 2.0
+
+#### Version 5.2.17; May 27, 2015
+* Fixed forgot set album id in PicasaNew
+
+#### Version 5.2.19; May 29, 2015
+* Fixed Postimage Error 5xx faced as uploading
+
+#### Version 5.2.20; Jun 12, 2015
+* Update ChipVN library
+* Fixed Postimage doesn't upload to account, can't get image url in some cases.
+* Display exact error message instead of general error message.
+
+#### Version 5.2.21; Jun 13, 2015
+* No longer support Picasa v1
+* Update ChipVN HttpClient
+* Postimage fully fixes (both free and use account)
